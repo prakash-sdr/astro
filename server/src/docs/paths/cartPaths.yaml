@@ -1,0 +1,74 @@
+/cart/{cartId}:
+  get:
+    summary: Get a specific cart by its ID
+    tags:
+        - Carts
+    parameters:
+      - name: cartId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Cart details retrieved successfully
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      "404":
+        description: Cart not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ErrorResponse"
+  delete:
+    summary: Delete a specific cart by its ID
+    tags:
+        - Carts
+    parameters:
+      - name: cartId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Cart deleted successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      "404":
+        description: Cart not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ErrorResponse"
+  /cart:
+    put:
+      summary: Create or update a cart with products
+      tags:
+          - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      responses:
+        "200":
+          description: Cart created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        "400":
+          description: Bad request, such as invalid product quantity or missing data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"

@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductManagement from '../components/ProductManagementComponent';
+---
+
+<Layout>
+  <div class="container mx-auto">
+    <h1 class="text-4xl font-bold mb-6">Product Management</h1>
+    <ProductManagement client:load />
+  </div>
+</Layout>

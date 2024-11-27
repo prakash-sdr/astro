@@ -1,0 +1,62 @@
+components:
+  schemas:
+    CartItem:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: Unique identifier for the product
+        name:
+          type: string
+          description: Name of the product
+        price:
+          type: number
+          format: float
+          description: Price of the product
+        description:
+          type: string
+          description: Optional description of the product
+        category:
+          type: string
+          description: Optional category of the product
+        quantity:
+          type: integer
+          description: Quantity of the product in the cart
+        createdAt:
+          type: string
+          format: date-time
+          description: Date and time when the cart item was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date and time when the cart item was last updated
+      required:
+        - productId
+        - name
+        - price
+
+    Cart:
+      type: object
+      properties:
+        cartId:
+          type: string
+          description: Unique identifier for the cart
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+          description: List of products in the cart
+      required:
+        - cartId
+        - products
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+      required:
+        - message
+        - statusCode

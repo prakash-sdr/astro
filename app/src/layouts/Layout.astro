@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store Layout</title>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex h-full">
+      <div class="lg:hidden flex items-center p-4 bg-gray-800 text-white z-50">
+        <button id="menu-toggle" class="text-white">
+          <span class="text-xl">☰</span>
+        </button>
+      </div>
+      <aside class="w-64 bg-gray-800 text-white flex-shrink-0 lg:block hidden fixed inset-0 z-50">
+        <div class="p-4 space-y-4">
+          <a href="/" class="text-lg font-bold">Home</a>
+          <nav>
+            <ul class="space-y-4">
+              <li>
+                <a href="/products" class="text-white hover:text-gray-300">Products</a>
+              </li>
+              <li>
+                <a href="/cart" class="text-white hover:text-gray-300">Cart</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <main class="flex-1 p-6 lg:ml-64">
+        <slot />
+      </main>
+      <aside id="mobile-sidebar" class="lg:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-50 transform -translate-x-full transition-transform duration-300">
+        <div class="w-full h-full bg-gray-800 text-white p-6">
+          <div class="flex justify-between items-center">
+            <a href="/" class="text-lg font-bold mb-4">Home</a>
+            <button id="close-menu" class="text-white text-2xl">×</button>
+          </div>
+          <nav>
+            <ul class="space-y-4">
+              <li>
+                <a href="/products" class="text-white hover:text-gray-300">Products</a>
+              </li>
+              <li>
+                <a href="/cart" class="text-white hover:text-gray-300">Cart</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+    </div>
+    <script is:inline>
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileSidebar = document.getElementById("mobile-sidebar");
+      const closeMenu = document.getElementById("close-menu");
+      menuToggle.addEventListener("click", () => {
+        mobileSidebar.classList.toggle("translate-x-0");
+      });
+      closeMenu.addEventListener("click", () => {
+        mobileSidebar.classList.toggle("translate-x-0");
+      });
+    </script>
+  </body>
+</html>
